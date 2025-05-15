@@ -1,0 +1,74 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title mb-4">Create New Employee</h4>
+
+      <form #employeeForm="ngForm" (ngSubmit)="createEmployee()" novalidate>
+        <div class="mb-3">
+          <label class="form-label">Full Name:</label>
+          <input type="text" [(ngModel)]="employee.fullName" name="fullName" class="form-control" required
+                 [ngClass]="{'is-invalid': employeeForm.submitted && !employeeForm.controls['fullName'].valid}" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email:</label>
+          <input type="email" [(ngModel)]="employee.email" name="email" class="form-control" required
+                 [ngClass]="{'is-invalid': employeeForm.submitted && !employeeForm.controls['email'].valid}" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Password:</label>
+          <input type="password" [(ngModel)]="employee.password" name="password" class="form-control" required
+                 [ngClass]="{'is-invalid': employeeForm.submitted && !employeeForm.controls['password'].valid}" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Phone Number:</label>
+          <input type="text" [(ngModel)]="employee.phoneNumber" name="phoneNumber" class="form-control" required
+                 [ngClass]="{'is-invalid': employeeForm.submitted && !employeeForm.controls['phoneNumber'].valid}" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Gender:</label>
+          <select [(ngModel)]="employee.gender" name="gender" class="form-select" required
+                  [ngClass]="{'is-invalid': employeeForm.submitted && !employeeForm.controls['gender'].valid}">
+            <option value="" disabled>Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Role:</label>
+          <select [(ngModel)]="employee.role" name="role" class="form-select" required
+                  [ngClass]="{'is-invalid': employeeForm.submitted && !employeeForm.controls['role'].valid}">
+            <option value="" disabled>Select role</option>
+            <option value="Admin">Admin</option>
+            <option value="Employee">Employee</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Department:</label>
+          <select [(ngModel)]="employee.departmentId" name="departmentId" class="form-select" required
+                  [ngClass]="{'is-invalid': employeeForm.submitted && !employeeForm.controls['departmentId'].valid}">
+            <option [ngValue]="null" disabled>Select department</option>
+            <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Shift:</label>
+          <select [(ngModel)]="employee.shiftId" name="shiftId" class="form-select" required
+                  [ngClass]="{'is-invalid': employeeForm.submitted && !employeeForm.controls['shiftId'].valid}">
+            <option [ngValue]="null" disabled>Select shift</option>
+            <option *ngFor="let shift of shifts" [value]="shift.id">{{ shift.name }}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100"
+                [disabled]="!employeeForm.valid">Create Employee</button>
+      </form>
+    </div>
+  </div>
+</div>

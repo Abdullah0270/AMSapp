@@ -1,0 +1,49 @@
+<div class="container mt-4">
+    <div class="card p-4 shadow-sm">
+      <h4 class="mb-3">{{ editingShiftId ? 'Update' : 'Create' }} Shift</h4>
+  
+      <form [formGroup]="shiftForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <input type="text" formControlName="name" class="form-control" placeholder="Shift Name" />
+        </div>
+        <div class="mb-3">
+          <label>Start Time</label>
+          <input type="time" formControlName="startTime" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label>End Time</label>
+          <input type="time" formControlName="endTime" class="form-control" />
+        </div>
+  
+        <button class="btn btn-primary w-100" type="submit">
+          {{ editingShiftId ? 'Update' : 'Create' }} Shift
+        </button>
+      </form>
+    </div>
+  
+    <div class="mt-5">
+      <h5>Shifts List</h5>
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let shift of shifts">
+            <td>{{ shift.name }}</td>
+            <td>{{ shift.startTime | date: 'shortTime' }}</td>
+            <td>{{ shift.endTime | date: 'shortTime' }}</td>            
+            <td>
+              <button class="btn btn-sm btn-info me-2" (click)="editShift(shift)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteShift(shift.globalId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

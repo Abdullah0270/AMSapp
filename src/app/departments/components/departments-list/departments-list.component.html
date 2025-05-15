@@ -1,0 +1,80 @@
+<div class="container">
+    <h2>Departments List</h2>
+  
+    <!-- Departments Table -->
+    <nz-table #basicTable [nzData]="departments" [nzBordered]="true">
+      <thead>
+        <tr>
+          <th nzWidth="25%">Name</th>
+          <th nzWidth="50%">Description</th>
+          <th nzWidth="25%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let department of basicTable.data">
+          <td>{{ department.name }}</td>
+          <td>{{ department.description }}</td>
+          <td>
+            <!-- Edit button (for updating) -->
+            <button nz-button nzType="primary" (click)="editDepartment(department)">
+              Edit
+            </button>
+  
+            <!-- Delete button -->
+            <button
+              nz-button nzType="primary" [nzDanger]="true"
+              (click)="deleteDepartment(department.globalId)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  
+    <!-- Update Department Form (Reactive Form) -->
+    <h3 *ngIf="selectedDepartment">Update Department</h3>
+    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Department Name</label>
+        <input
+          id="name"
+          formControlName="name"
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': departmentForm.get('name')?.invalid && departmentForm.get('name')?.touched
+          }"
+        />
+        <div *ngIf="departmentForm.get('name')?.invalid && departmentForm.get('name')?.touched" class="text-danger">
+          Name is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Department Description</label>
+        <input
+          id="description"
+          formControlName="description"
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': departmentForm.get('description')?.invalid && departmentForm.get('description')?.touched
+          }"
+        />
+        <div *ngIf="departmentForm.get('description')?.invalid && departmentForm.get('description')?.touched" class="text-danger">
+          Description is required
+        </div>
+      </div>
+  
+      <button
+        nz-button
+        nzType="primary"
+        [disabled]="departmentForm.invalid"
+        type="submit"
+      >
+        Update Department
+      </button>
+    </form>
+  </div>
+  

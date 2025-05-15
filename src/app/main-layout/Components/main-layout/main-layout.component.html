@@ -1,0 +1,61 @@
+<app-top-navbar></app-top-navbar>
+
+<nz-layout class="bg-light">
+  <!-- Sidebar -->
+  <nz-sider nzCollapsible [nzWidth]="250" class="shadow-sm custom-sider" style="min-height: 100vh;">
+    
+    <!-- Sidebar Header
+    <div 
+      class="text-white text-center fw-bold py-3 bg-dark border-bottom"
+      style="font-size: 18px;"
+    >
+      Attendance System
+    </div> -->
+
+    <!-- Sidebar Menu -->
+    <ul nz-menu nzTheme="dark" nzMode="inline" class="pt-2">
+      <li nz-submenu nzTitle="Employees" nzIcon="user" nzOpen>
+        <ul>
+          <li nz-menu-item [routerLink]="['/employee/create']">Create Employees</li>
+          <li nz-menu-item [routerLink]="['/employee/Assign']">Assign RSD</li>
+          <li nz-menu-item [routerLink]="['/employee/list']">Employees List</li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzTitle="Departments" nzIcon="apartment" nzOpen>
+        <ul>
+          <li nz-menu-item [routerLink]="['/departments/create']">Create Department</li>
+          <li nz-menu-item [routerLink]="['/departments/list']">Department List</li>        
+        </ul>
+      </li>
+
+      <li nz-submenu nzTitle="Employee Shifts" nzIcon="clock-circle" nzOpen>
+        <ul>
+          <li nz-menu-item [routerLink]="['/shifts/shifts']">Shift Form</li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzTitle="Attendance Logs" nzIcon="calendar" nzOpen>
+        <ul>
+          <li nz-menu-item [routerLink]="['/attendence-logs/MarkAttndence']">Mark Attendance</li>
+          <li nz-menu-item [routerLink]="['/attendence-logs/AttndenceList']">Attendance Logs</li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzTitle="Leave Requests" nzIcon="file-done" nzOpen>
+        <ul>
+          <li nz-menu-item [routerLink]="['/leave-requests/request']">Request</li>
+          <li nz-menu-item [routerLink]="['/leave-requests/approve']">Approve</li>
+          <li nz-menu-item [routerLink]="['/leave-requests/status']">Status</li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <!-- Main content -->
+  <nz-layout>
+    <nz-content class="p-4 bg-white shadow-sm rounded" style="min-height: 100vh;">
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

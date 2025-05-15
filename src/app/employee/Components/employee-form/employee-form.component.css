@@ -1,0 +1,52 @@
+nz-form-item {
+  width: 100%;
+  display: inline;
+
+}
+nz-form-label {
+  font-weight: 600;
+  color: #000000;
+  text-align: left;
+
+}
+.ant-card-actions > li {
+  float: left;
+  margin: 12px 0;
+  color: rgba(0, 0, 0, 0.45);
+  text-align: end;
+  margin-left: -18px;
+}
+nz-card {
+  font-weight: bolder;
+}
+.click-event {
+  color: #004fd6;
+  font-size: 14px;
+}
+.sticky-footer {
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  padding: 10px 0;
+  box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 100%;
+  position: fixed;
+}
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+  padding-right: 10px;
+}
+::ng-deep.coded-wrapper {
+  width: 100%;
+  background: #fff;
+  min-height: 100vh;
+  padding: 10px;
+}
+.tab-title {
+  font-size: 20px;
+  font-weight: bold;
+}

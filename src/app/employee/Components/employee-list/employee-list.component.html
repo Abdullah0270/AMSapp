@@ -1,0 +1,71 @@
+<div class="container mt-5">
+
+  <!-- Update Form -->
+  <form *ngIf="showUpdateForm" [formGroup]="employeeForm" (ngSubmit)="updateEmployee()" class="card p-4 shadow">
+    <h4 class="mb-3">Update Employee</h4>
+
+    <div class="mb-3">
+      <input type="text" class="form-control" placeholder="Full Name" formControlName="fullName" />
+    </div>
+
+    <div class="mb-3">
+      <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+    </div>
+
+    <div class="mb-3">
+      <input type="text" class="form-control" placeholder="Phone Number" formControlName="phoneNumber" />
+    </div>
+
+    <div class="mb-3">
+      <input type="text" class="form-control" placeholder="Gender" formControlName="gender" />
+    </div>
+
+    <div class="mb-3">
+      <select class="form-select" formControlName="role">
+        <option value="Employee">Employee</option>
+        <option value="Admin">Admin</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <input type="number" class="form-control" placeholder="Department ID" formControlName="departmentId" />
+    </div>
+
+    <div class="mb-3">
+      <input type="number" class="form-control" placeholder="Shift ID" formControlName="shiftId" />
+    </div>
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">Cancel</button>
+    </div>
+  </form>
+
+  <hr class="my-5" />
+
+  <!-- Employee List -->
+  <div class="list-container">
+    <h4>Employee List</h4>
+    <ul class="list-group mt-3" *ngIf="employees.length > 0">
+      <li *ngFor="let emp of employees | paginate: { itemsPerPage: 5, currentPage: currentPage }"
+          class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+        <div>
+          <strong>{{ emp.fullName }}</strong><br />
+          {{ emp.email }} - {{ emp.phoneNumber }} - {{ emp.gender }} - {{ emp.role }}
+        </div>
+        <div class="mt-2 mt-md-0">
+          <button class="btn btn-sm btn-success me-2" (click)="editEmployee(emp)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp.globalId)">Delete</button>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Pagination Controls -->
+<pagination-controls
+  (pageChange)="currentPage = $event"
+  class="mt-3"
+></pagination-controls>
+
+    <p *ngIf="employees.length === 0">No employees available.</p>
+  </div>
+</div>

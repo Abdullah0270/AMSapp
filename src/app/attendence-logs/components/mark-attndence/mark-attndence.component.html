@@ -1,0 +1,58 @@
+<form [formGroup]="attendanceForm">
+<div class="container max-w-xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-4">
+  <h2 class="text-2xl font-bold text-center">Mark Attendance</h2>
+
+  <!-- Success / Error Messages -->
+  <div *ngIf="successMessage" class="alert alert-success p-2 rounded">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger p-2 rounded">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Employee Dropdown (only for Admins) -->
+  <div *ngIf="isAdmin">
+    <label for="employeeId" class="form-label font-medium mb-1">Select Employee</label>
+    <!-- <select id="employeeId" formControlName="employeeId" class="form-select">
+      <option value="">-- Select Employee --</option>
+      <option *ngFor="let emp of employees" [value]="emp.id">
+        {{ emp.fullName }}
+      </option>
+    </select> -->
+
+
+    
+      <nz-select
+        formControlName="employeeId"
+        nzShowSearch
+        nzPlaceHolder="Select Employee"
+        (ngModelChange)="onEmployeeSelect($event)"> <!-- optional logging -->
+        
+        <nz-option
+          *ngFor="let emp of employees"
+          [nzValue]="emp.id"
+          [nzLabel]="emp.fullName + ' (ID: ' + emp.id + ')'">
+        </nz-option>
+      </nz-select>
+     
+  </div>
+
+  <!-- Hidden employeeId field for regular users -->
+  <input *ngIf="!isAdmin" type="hidden" formControlName="employeeId" />
+
+  <!-- Buttons -->
+  <div class="d-flex flex-column gap-3 mt-4">
+    <button (click)="clockIn()" class="btn btn-primary py-2 px-4 rounded hover:bg-blue-700 transition">
+      Clock In
+    </button>
+
+    <button (click)="clockOut()" class="btn btn-warning py-2 px-4 rounded hover:bg-yellow-600 transition">
+      Clock Out
+    </button>
+
+    <button (click)="markAbsent()" class="btn btn-danger py-2 px-4 rounded hover:bg-red-600 transition">
+      Mark Absent
+    </button>
+  </div>
+</div>
+</form>

@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title mb-4">Assign Role, Shift, and Department</h4>
+
+      <form (ngSubmit)="assignRoleShiftDepartment()">
+
+        <!-- Select Employee -->
+        <div class="mb-3">
+          <label for="employee" class="form-label">Select Employee:</label>
+          <select [(ngModel)]="employee.globalId" name="employee" id="employee" class="form-select" required>
+            <option [ngValue]="null" disabled selected>Select Employee</option>
+            <option *ngFor="let emp of unassignedEmployees" [value]="emp.globalId">
+              {{ emp.fullName }} ({{ emp.email }})
+            </option>
+          </select>
+        </div>
+
+        <!-- Select Department -->
+        <div class="mb-3">
+          <label for="department" class="form-label">Department:</label>
+          <select [(ngModel)]="employee.departmentId" name="department" id="department" class="form-select" required>
+            <option [ngValue]="null" disabled selected>Select Department</option>
+            <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+          </select>
+        </div>
+
+        <!-- Select Shift -->
+        <div class="mb-3">
+          <label for="shift" class="form-label">Shift:</label>
+          <select [(ngModel)]="employee.shiftId" name="shift" id="shift" class="form-select" required>
+            <option [ngValue]="null" disabled selected>Select Shift</option>
+            <option *ngFor="let shift of shifts" [value]="shift.id">{{ shift.name }}</option>
+          </select>
+        </div>
+
+        <!-- Select Role -->
+        <div class="mb-4">
+          <label for="role" class="form-label">Role:</label>
+          <select [(ngModel)]="employee.role" name="role" id="role" class="form-select" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="Admin">Admin</option>
+            <option value="Employee">Employee</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100">Assign</button>
+      </form>
+    </div>
+  </div>
+</div>

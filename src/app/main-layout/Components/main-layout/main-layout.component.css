@@ -1,0 +1,22 @@
+.custom-sider {
+  background-color: #363636 !important; /* Light grey background */
+}
+
+/* Override dark theme for menu items */
+.custom-sider .ant-menu-dark {
+  background-color: #363636 !important;
+  color: #ffffff;
+}
+
+/* Menu item hover effect */
+.custom-sider .ant-menu-item:hover,
+.custom-sider .ant-menu-submenu-title:hover {
+  background-color: #363636 !important;
+  color: #ffffff !important;
+}
+
+/* Active link styling (optional) */
+.custom-sider .ant-menu-item-selected {
+  background-color: #363636 !important;
+  color: #ffffff !important;
+}

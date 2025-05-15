@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="container mt-4 p-4 border rounded shadow-sm bg-light">
+    <h4 class="mb-3">Leave Request</h4>
+  
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input type="datetime-local" formControlName="startDate" id="startDate" class="form-control" required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="endDate" class="form-label">End Date</label>
+      <input type="datetime-local" formControlName="endDate" id="endDate" class="form-control" required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="reason" class="form-label">Reason</label>
+      <input type="text" formControlName="reason" id="reason" class="form-control" placeholder="Enter reason" required>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  

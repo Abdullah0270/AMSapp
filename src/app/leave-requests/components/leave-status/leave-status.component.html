@@ -1,0 +1,39 @@
+<div class="mt-4">
+    <h3 class="mb-3">My Leave Requests</h3>
+  
+    <div *ngIf="loading">Loading...</div>
+  
+    <div *ngIf="!loading && myRequests.length === 0" class="alert alert-info">
+      You did not submit any leave request.
+    </div>
+  
+    <table *ngIf="myRequests.length > 0" class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Reason</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of myRequests">
+          <td>{{ r.startDate | date:'short' }}</td>
+          <td>{{ r.endDate | date:'short' }}</td>
+          <td>{{ r.reason }}</td>
+          <td>
+            <span 
+              class="badge"
+              [ngClass]="{
+                'bg-warning text-dark': r.status === 'Pending',
+                'bg-success': r.status === 'Approved',
+                'bg-danger': r.status === 'Rejected'
+              }">
+              {{ r.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
